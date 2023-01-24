@@ -7,8 +7,7 @@ public class Eggs {
     @Id
     @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "egg_generator")
     @SequenceGenerator(name = "egg_generator", sequenceName = "egg_seq", allocationSize = 1)
-
-    private int id;
+    private Integer id;
     private int price;
     private String name;
 

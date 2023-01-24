@@ -5,6 +5,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -15,62 +16,21 @@ public class StoreController {
 
   @Autowired
   private storeService storeService;
-
-
-    /*public List<Eggs> getEggList(){
-        List<Eggs> eggsList = new ArrayList<Eggs>();
-        eggsList.add(new Eggs());
-        eggsList.add(new Eggs(13, "Bulbasaur", 33));
-        return eggsList;
-
-    }
-
-    private String getEggsListToJson(){
-        List<Eggs> eggsList = getEggList();
-        int size = eggsList.size();
-        Eggs egg ;
-        String name;
-        int price;
-        String jsonString = "{\"eggs\":[";
-        for (int i = 0 ; i<size ; i++){
-            egg = eggsList.get(i);
-            jsonString = jsonString + egg.stringify();
-        }
-        jsonString = jsonString +"]}";
-        return jsonString;
-
-
-    }*/
-
     @CrossOrigin()
-    /*@GetMapping("/eggs")
-    public ResponseEntity<String> eggList() {
-        return ResponseEntity.ok("Egg1");
+    @GetMapping("/storebuyegg/{userId}")
+    public @ResponseBody String buyEgg(@PathVariable("userId") Integer userId,@RequestParam(name="eggName", required = true) String eggName){
+      String jsonString = storeService.storeBuyEggs(eggName);
+      return jsonString;
     }
-
-    @GetMapping("/eggSellPrice")
-    public ResponseEntity<String> eggSellList() {
-        return ResponseEntity.ok(getEggsListToJson());
-    }*/
-    @GetMapping("/userSellEggs/{userId}")
-    public String sellEggs(@PathVariable("eggName") String eggName, @RequestParam(name="name", required = true, defaultValue = "1") Integer eggPrice,@RequestParam(name="name", required = true, defaultValue = "1") Integer userId){
-      Eggs eggs = new Eggs(eggPrice+10, eggName);
-
-
-      String msg = "User:"+userId+"";
-      return msg;
-    }
-
-    @GetMapping("/buyEggs/{userId}")
-    public String buyEggs(@RequestParam(name="name", required = true, defaultValue = "Charminder") String eggName, @PathVariable("userId") Integer userId)
+    @GetMapping("/storeselleggs/{userId}")
+    public @ResponseBody String sellEgg(@PathVariable("userId") Integer userId, @RequestParam(name="eggName", required = true) String eggName)
     {
-      Eggs egg = storeService.getEggsByName(eggName);
-      String msg = "user:"+userId+" buyed an "+egg.getName()+" egg for "+egg.getPrice()+" Pokedollars";
-      return msg;
+      String jsonString = storeService.storeSellEggs(eggName);
+      return jsonString;
     }
-    @GetMapping("/getAllEggs")
-    public @ResponseBody Iterable<Eggs> getAllEggs() {
-      return storeService.getAllEggs();
+    @GetMapping("/displayalleggs")
+    public @ResponseBody String allEggs() {
+      return storeService.displayAllEggs();
     }
 
 
