@@ -1,34 +1,44 @@
-package com.micro.service.userservice.web.controller;
+package com.IMT.UserService.Controller;
 
-import UserService\src\main\java\com\IMT\UserService\Repository\UserInformationRepo.java;
-import UserService\src\main\java\com\IMT\UserService\Model\UserModel.java;
+
+import com.IMT.UserService.Model.UserH2;
+import com.IMT.UserService.Service.UserService21;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
-
-import java.util.List;
+import com.IMT.UserService.Repository.*;
 
 @RestController
-@RequestMapping("/userInformation")
+@RequestMapping("/l")
 public class UserController {
 
     @Autowired
-    private UserInformationRepo userInformationRepo;
+    private UserRepository userInformationRepo;
+    @Autowired
+    private UserService21 userService21;
 
-    @PostMapping()
-    public UserInformation createUser (@RequestBody UserInformation userInformation) {
-        userInformation.setLevel(0);
-        userInformation.setExp(0);
-        userInformation.setGold(0);
-        return userInformationRepo.save(userInformation)
+    @PostMapping(path="/add")
+    public @ResponseBody UserH2 addNewUser(
+            @RequestParam String name,
+            @RequestParam Integer gold,
+            @RequestParam Integer experience,
+            @RequestParam Integer levels) {
+        final UserH2 userH2 = new UserH2();
+        userH2.setName(name);
+        userH2.setGold(gold);
+        userH2.setLevels(levels);
+        userH2.setExperience(experience);
+
+        return userService21.save(userH2);
     }
 
-    @GetMapping("/{id}")
-    public UserInformation getTransactions() {
-        return userInformationRepo.findById();
+    @GetMapping(path="/all")
+    public @ResponseBody Iterable<UserH2> getAllUsers() {
+        // This returns a JSON or XML with the users
+        return userService21.getAllUsers();
     }
 
-    @DeleteMapping("/{id}")
-    public String deleteTransactionById(@PathVariable int id)   {
-        return userTransactionRepo.deleteUserTransaction(id);
+    @GetMapping(path = "/userInformation/{id}")
+    public UserH2 getUserInformation(@PathVariable("id") Integer id){
+        return userService21.getUserInformation(id);
     }
 }
