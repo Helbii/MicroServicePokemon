@@ -1,6 +1,5 @@
 package com.IMT.UserService.Controller;
 
-
 import com.IMT.UserService.Model.UserH2;
 import com.IMT.UserService.Service.UserService21;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -22,6 +21,8 @@ public class UserController {
             @RequestParam Integer gold,
             @RequestParam Integer experience,
             @RequestParam Integer levels) {
+
+        // A factoriser dans save ou createUser
         final UserH2 userH2 = new UserH2();
         userH2.setName(name);
         userH2.setGold(gold);
