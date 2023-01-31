@@ -1,9 +1,7 @@
-package com.micro.storeservice.model;
+package inventoryservice.model;
 
 import jakarta.persistence.*;
-import java.time.LocalDate;
-import java.util.Date;
-import java.util.Random;
+
 @Entity
 public class Eggs {
     @Id
@@ -13,23 +11,17 @@ public class Eggs {
     private int price;
     private String name;
 
-    private int due_time;
+    public Eggs(){
+        this.id = 43;
+        this.price = 10;
+        this.name = "eggs Charminder";
 
-    private LocalDate creation_date;
-
+    }
     public Eggs(int price, String name){
         //setId(id);
-
-        setCreationDate();
-        setDueTime();
         setPrice(price);
         setName(name);
     }
-
-    public Eggs() {
-
-    }
-
     private void setPrice(int price){
         this.price = price;
     }
@@ -37,20 +29,7 @@ public class Eggs {
         this.name = "egg "+name;
     }
 
-    private void setDueTime(){
-        Random rd = new Random();
-        this.due_time = rd.nextInt(3600, 7200); }
-
-    private void setCreationDate(){this.creation_date = LocalDate.now(); }
     private void setId(int id) { this.id = id;
-    }
-
-    public int getDue_time() {
-        return due_time;
-    }
-
-    public LocalDate getCreation_date() {
-        return creation_date;
     }
 
     public int getPrice(){
@@ -64,9 +43,7 @@ public class Eggs {
         return getName() +" : "+getPrice();
     }
     public String stringify(){
-        return "{\"id\":\""+getId()+"\",\"name\":\""+getName()+"\"," +
-                "\"price\":\""+getPrice()+"\",\"due_time\":\""+getDue_time()+"\"" +
-                ",\"creation_date\":\""+getCreation_date()+"\"}";
+        return "{\"id\":\""+getId()+"\",\"name\":\""+getName()+"\",\"price\":\""+getPrice()+"\"}";
     }
 
 }

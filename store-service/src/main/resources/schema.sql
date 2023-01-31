@@ -10,6 +10,8 @@ CREATE SEQUENCE "EGG_SEQ"
 CREATE TABLE EGGS (
                     id BIGINT NOT NULL DEFAULT nextval('EGG_SEQ') PRIMARY KEY,
                     name VARCHAR(20) NOT NULL,
-                    price INTEGER NOT NULL
+                    price INTEGER NOT NULL,
+                    creation_date DATETIME NOT NULL,
+                    due_time INT NOT NULL
 );
 
