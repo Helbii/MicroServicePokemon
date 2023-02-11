@@ -1,14 +1,22 @@
 package com.micro.inventoryservice.model;
 
-public class Pokemon {
+import jakarta.persistence.*;
+
+@Entity
+public class Pokemons {
+
+    @Id
     private Integer id;
     private String name;
     private Integer xp;
     private String type;
     private Integer lifePoint;
     private Integer combatPoint;
+    private Integer userid;
 
-    public Pokemon(){
+
+    public Pokemons(){
+        this.userid = null;
         this.id = 1;
         this.name = "Pikachu";
         this.xp = 0;
@@ -16,7 +24,8 @@ public class Pokemon {
         this.lifePoint = 100;
         this.combatPoint = 20;
     }
-    public Pokemon(int id, String name, int xp, String type, int lifePoint, int combatPoint){
+    public Pokemons(int id, String name, int xp, String type, int lifePoint, int combatPoint){
+        this.userid = null;
         this.id = id;
         this.name = name;
         this.xp = xp;
@@ -25,9 +34,18 @@ public class Pokemon {
         this.combatPoint = combatPoint;
     }
 
+
+    public void setUserid(Integer userid){
+        this.userid = userid;
+    }
+
+    public Integer getUserid(){
+        return this.userid;
+    }
+
     public String stringify(){
         String stringJson = "";
-        stringJson = "{\"id\":\""+ getId()+"\",\"name\":\""+getName() +"\",\"xp\":\""+getXp() +"\",\"type\":\""+ getType()+"\"," +
+        stringJson = "{\"id\":\""+ getId()+"\",\"user_id\" :\""+getUserid()+"\",\"name\":\""+getName() +"\",\"xp\":\""+getXp() +"\",\"type\":\""+ getType()+"\"," +
                 "\"life_point\":\""+getLifePoint() +"\",\"combat_point\":\""+ getCombatPoint()+"\"}";
         return stringJson;
     }

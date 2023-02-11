@@ -1,5 +1,10 @@
-INSERT INTO EGGS (name, price) VALUES ('Charminder', '56');
-INSERT INTO EGGS (name, price) VALUES ('Squirtle', '45');
-INSERT INTO EGGS (name, price) VALUES ('Bulbasaur', '34');
-INSERT INTO POKEMON(name, xp, type, life_point, combat_point) VALUES ('Charminder', 0,'Fire',100, 20)
+
+INSERT INTO EGGS(id,userid, name) VALUES (0,0, 'Squirtle');
+
+
+INSERT INTO POKEMONS(id,name,userid, xp, type, life_point, combat_point) VALUES (0,'Charminder',0, 0,'Fire',100, 20);
+
+INSERT INTO USERS(id,name,gold) VALUES (0,'Alexandre', 1500);
+
+
 
