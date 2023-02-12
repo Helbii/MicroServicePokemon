@@ -1,16 +1,15 @@
 package com.micro.inventoryservice.queue;
-import jakarta.persistence.*;
 import com.micro.inventoryservice.model.Pokemons;
 import com.micro.inventoryservice.repository.PokemonsRepository;
 import org.springframework.amqp.rabbit.annotation.RabbitListener;
-import org.springframework.stereotype.Service;
+import org.springframework.stereotype.Component;
 import org.springframework.beans.factory.annotation.Autowired;
-@Service
+@Component
 public class Receiver {
 
     @Autowired
     private PokemonsRepository pokemonRepository;
-    @RabbitListener(queues = "${queue.name}")
+    @RabbitListener(queues = "hatching")
     public void receive(Pokemons pokemon) {
         pokemonRepository.save(pokemon);
         System.out.println("Pokemon saved in database: " + pokemon);
