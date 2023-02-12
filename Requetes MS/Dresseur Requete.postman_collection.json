@@ -1,0 +1,127 @@
+{
+	"info": {
+		"_postman_id": "ac91abf3-be4c-4fbb-8e26-0c257000781f",
+		"name": "Dresseur Requete",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "25466748"
+	},
+	"item": [
+		{
+			"name": "Lancer une attaque",
+			"request": {
+				"method": "PUT",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:8080/dresseur/1/pokemon/1/attack",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"dresseur",
+						"1",
+						"pokemon",
+						"1",
+						"attack"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Essayer de lancer une attaque avec des mauvais arguments",
+			"request": {
+				"method": "PUT",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:8080/dresseur/5/pokemon/1/attack",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"dresseur",
+						"5",
+						"pokemon",
+						"1",
+						"attack"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Afficher les dresseurs",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:8080/dresseur/all",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"dresseur",
+						"all"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Ajouter un dresseur",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:8080/dresseur/add?name=Manny",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"dresseur",
+						"add"
+					],
+					"query": [
+						{
+							"key": "id",
+							"value": "5",
+							"disabled": true
+						},
+						{
+							"key": "name",
+							"value": "Manny"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Afficher les pokemons présent dans l'équipe active du dresseur",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:8080/dresseur/equipe",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"dresseur",
+						"equipe"
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}
